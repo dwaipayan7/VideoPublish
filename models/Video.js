@@ -1,17 +1,32 @@
-import mongoose from "mongoose";
 
-const VideoSchema = new mongoose.Schema({
-    caption: String,
-    videoUrl: String,
-    thumbnailUrl: String,
-    cloudinaryId: String,
-    likes: {
-        type: Date, default: Date.now
+import mongoose from 'mongoose';
+
+const videoSchema = new mongoose.Schema({
+    caption: {
+        type: String,
+        required: true
     },
-    createdAt: {
-        type: Date, default: Date.now
+    videoUrl: {
+        type: String,
+        required: true
+    },
+    thumbnailUrl: {
+        type: String
+    },
+    cloudinaryId: {
+        type: String,
+        required: true
+    },
+    likes: {
+        type: Number,
+        default: 0
+    },
+    views: {
+        type: Number,
+        default: 0
     }
+}, {
+    timestamps: true
 });
 
-const Video = mongoose.model("Video", VideoSchema);
-export default Video;
+export default mongoose.model('Video', videoSchema);
